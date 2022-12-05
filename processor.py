@@ -14,6 +14,14 @@ class Processor:
         if self.path != "":
             index = len(self.path) - self.path[::-1].index('/')
             label.setText(self.path[index:-4])
+            btn.setStyleSheet(
+"QPushButton{\n"
+"    background-color: rgb(27, 33, 37);\n"
+"    border-radius: 15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"   background-color: black;\n"
+"}\n")
             btn.setEnabled(True)
 
     def analyse(self, bpm_label, key_label):

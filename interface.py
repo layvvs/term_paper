@@ -47,9 +47,9 @@ class Ui_MainWindow(object):
 "    background-color: rgb(27, 33, 37);\n"
 "    border-radius: 15px;\n"
 "}\n"
-"\n"
-"\n"
-"\n"
+"#analyse_frame_btns QPushButton::hover, #menu_frame QPushButton::hover{\n"
+"   background-color: black;\n"
+"}\n"
 "")
         MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -268,8 +268,9 @@ class Ui_MainWindow(object):
         self.open_file_btn.setObjectName("open_file_btn")
         self.horizontalLayout_3.addWidget(self.open_file_btn)
         self.analyse_btn = QtWidgets.QPushButton(self.analyse_frame_btns)
-        self.analyse_btn.setEnabled(True)
+        self.analyse_btn.setEnabled(False)
         self.analyse_btn.setMinimumSize(QtCore.QSize(0, 40))
+        self.analyse_btn.setStyleSheet("background-color: grey;")
         font = QtGui.QFont()
         font.setFamily("Bahnschrift")
         font.setPointSize(16)
