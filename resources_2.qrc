@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="icons_new">
+    <file>icons_new/analysis (1).svg</file>
+    <file>icons_new/library-books.svg</file>
+    <file>icons_new/setting.svg</file>
+    <file>icons_new/upload-folder.svg</file>
+  </qresource>
+  <qresource prefix="images_new">
+    <file>images_new/analyse.png</file>
+    <file>images_new/bpkey.png</file>
+    <file>images_new/bpm.png</file>
+    <file>images_new/key.png</file>
+    <file>images_new/name.png</file>
+    <file>images_new/note.png</file>
+    <file>images_new/page images.png</file>
+  </qresource>
+  <qresource prefix="fonts">
+    <file>fonts/FontsFree-Net-LinikSans-Bold.ttf</file>
+  </qresource>
+</RCC>

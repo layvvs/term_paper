@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="images_fin">
+    <file>images_final/analyse.png</file>
+    <file>images_final/bpkey.png</file>
+    <file>images_final/bpm.png</file>
+    <file>images_final/key.png</file>
+    <file>images_final/library.png</file>
+    <file>images_final/name.png</file>
+    <file>images_final/note.png</file>
+  </qresource>
+  <qresource prefix="icons_fin">
+    <file>icons_final/analysis (1).svg</file>
+    <file>icons_final/library-books.svg</file>
+    <file>icons_final/setting.svg</file>
+    <file>icons_final/upload-folder.svg</file>
+  </qresource>
+</RCC>
