@@ -9,9 +9,6 @@ class Processor:
     This class works with buttons
     """
 
-    # def __init__(self) for creating class objects from another modules
-    #
-
     def open_file(self, label, btn):
         self.path = (QFileDialog\
                      .getOpenFileName(QDialog(), 'Open Audio File', '/home',
@@ -34,9 +31,6 @@ class Processor:
 
 
     def analyze(self, bpm_lbl: QtWidgets.QLabel, key_lbl: QtWidgets.QLabel):
-        #add a dialog suggestion for adding data into db
-        # dialog = QDialog()
-        # dialog.exec_()
         y, sr = librosa.load(self.path)
         tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
         y_harmonic, _ = librosa.effects.hpss(y)
@@ -48,5 +42,7 @@ class Processor:
             key_lbl.setText(f"{key[0]}/{key[1]}")
         else:
             key_lbl.setText(key)
-        # dialog.close()
+        # g.g_adding_suggestion(g)
+
+
 
