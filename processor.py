@@ -9,13 +9,16 @@ class Processor:
     This class works with buttons
     """
 
+    # def __init__(self) for creating class objects from another modules
+    #
+
     def open_file(self, label, btn):
         self.path = (QFileDialog\
                      .getOpenFileName(QDialog(), 'Open Audio File', '/home',
                                 'MP3 File (*.mp3);;WAV File (*.wav)'))[0]
         if self.path != "":
             if librosa.get_duration(filename=self.path) < 30:
-                g.qdialog(g, 'Audio file duration should be 30 seconds or more')
+                g.g_dialog(g, 'Audio file duration must be 30 seconds or more')
             else:
                 index = len(self.path) - self.path[::-1].index('/')
                 label.setText(self.path[index:-4])
@@ -30,7 +33,10 @@ class Processor:
 "}\n")
 
 
-    def analyse(self, bpm_lbl: QtWidgets.QLabel, key_lbl: QtWidgets.QLabel):
+    def analyze(self, bpm_lbl: QtWidgets.QLabel, key_lbl: QtWidgets.QLabel):
+        #add a dialog suggestion for adding data into db
+        # dialog = QDialog()
+        # dialog.exec_()
         y, sr = librosa.load(self.path)
         tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
         y_harmonic, _ = librosa.effects.hpss(y)
@@ -38,13 +44,9 @@ class Processor:
         key = processed_data.get_key()
         bpm_lbl.setText(str(int(tempo)))
         if type(key) is tuple:
-            font = QtGui.QFont()
-            font.setFamily("Bahnschrift")
-            font.setPointSize(12)
-            key_lbl.setFont(font)
-            key_lbl.setText(key[0], '/', key[1])
+            key_lbl.setFont(g.g_font(g, 12))
+            key_lbl.setText(f"{key[0]}/{key[1]}")
         else:
             key_lbl.setText(key)
-
-
+        # dialog.close()
 
