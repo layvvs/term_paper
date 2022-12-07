@@ -332,14 +332,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.go_to_analyses_btn.setText(_translate("MainWindow", "Analyse Audio"))
+        MainWindow.setWindowTitle(_translate("BPKEY", "BPKEY"))
+        self.go_to_analyses_btn.setText(_translate("MainWindow", "Analyze Audio"))
         self.go_to_library_btn.setText(_translate("MainWindow", "Your Library"))
         self.name_label.setText(_translate("MainWindow", "Unknown"))
         self.bpm_label.setText(_translate("MainWindow", "Unknown"))
         self.key_label.setText(_translate("MainWindow", "Unknown"))
         self.open_file_btn.setText(_translate("MainWindow", "Open Audio File"))
-        self.analyse_btn.setText(_translate("MainWindow", "Analyse"))
+        self.analyse_btn.setText(_translate("MainWindow", "Analyze"))
 
     def connections(self):
             self.open_file_btn.clicked.connect(lambda: p.open_file(p, self.name_label, self.analyse_btn))
