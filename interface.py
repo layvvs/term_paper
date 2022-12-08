@@ -343,6 +343,6 @@ class Ui_MainWindow(object):
 
     def connections(self):
             self.open_file_btn.clicked.connect(lambda: p.open_file(p, self.name_label, self.analyse_btn))
+            self.analyse_btn.clicked.connect(lambda: p.analyze(p, self.bpm_label, self.key_label))
             self.go_to_analyses_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
             self.go_to_library_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
-            self.analyse_btn.clicked.connect(lambda: p.analyze(p, self.bpm_label, self.key_label))
