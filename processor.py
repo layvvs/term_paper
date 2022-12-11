@@ -15,10 +15,11 @@ class Processor:
                                 'MP3 File (*.mp3);;WAV File (*.wav)'))[0]
         if self.path != "":
             if librosa.get_duration(filename=self.path) < 30:
-                g.g_dialog(g, 'Audio file duration must be 30 seconds or more')
+                g.g_allert_dialog(g, 'Audio file duration must be 30 seconds or more')
             else:
                 index = len(self.path) - self.path[::-1].index('/')
-                label.setText(self.path[index:-4])
+                self.name = self.path[index:-4]
+                label.setText(self.name)
                 btn.setEnabled(True)
                 btn.setStyleSheet(
 "QPushButton{\n"
@@ -42,7 +43,8 @@ class Processor:
             key_lbl.setText(f"{key[0]}/{key[1]}")
         else:
             key_lbl.setText(key)
-        # g.g_adding_suggestion(g)
+        g.g_adding_suggestion(g, self.name)
+
 
 
 

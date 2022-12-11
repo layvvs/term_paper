@@ -1,9 +1,10 @@
 from PyQt5 import QtWidgets
 from interface import Ui_MainWindow
 
-
 if __name__ == "__main__":
     import sys
+    import library
+    db = library.Library()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
