@@ -1,7 +1,8 @@
 import resources_fin
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from processor import Processor as p
+from analyze_processor import Processor as p
+from db_processor import Insert as i
 
 
 class Ui_MainWindow(object):
@@ -294,7 +295,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.library_label = QtWidgets.QLabel(self.frame_5)
-        self.library_label.setMinimumSize(QtCore.QSize(0, 0))
+        self.library_label.setMinimumSize(QtCore.QSize(480, 53))
         font = QtGui.QFont()
         font.setFamily("Bahnschrift")
         font.setPointSize(22)
@@ -314,6 +315,26 @@ class Ui_MainWindow(object):
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
+
+        #scroll_area
+
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.frame_6)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.scrollArea = QtWidgets.QScrollArea(self.frame_6)
+        self.scrollArea.setMinimumSize(QtCore.QSize(485, 300))
+        self.scrollArea.setMaximumSize(QtCore.QSize(485, 300))
+        self.scrollArea.setStyleSheet("border-radius: 15px;\n"
+                                      "border: nine;")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 485, 300))
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_9.addWidget(self.scrollArea)
+
+        #end of scroll area
+
         self.verticalLayout_4.addWidget(self.frame_6)
         self.stackedWidget.addWidget(self.library_page)
         self.verticalLayout_3.addWidget(self.stackedWidget)
@@ -342,7 +363,8 @@ class Ui_MainWindow(object):
         self.analyse_btn.setText(_translate("MainWindow", "Analyze"))
 
     def connections(self):
-            self.open_file_btn.clicked.connect(lambda: p.open_file(p, self.name_label, self.analyse_btn))
-            self.analyse_btn.clicked.connect(lambda: p.analyze(p, self.bpm_label, self.key_label))
-            self.go_to_analyses_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
-            self.go_to_library_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
+        self.open_file_btn.clicked.connect(lambda: p.open_file(p, self.name_label, self.analyse_btn))
+        self.analyse_btn.clicked.connect(lambda: p.analyze(p, self.bpm_label, self.key_label))
+        self.go_to_analyses_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
+        self.go_to_library_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
+        self.go_to_library_btn.clicked.connect(lambda: i.insert(i, self.scrollArea))
