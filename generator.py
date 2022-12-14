@@ -191,11 +191,11 @@ class Generator:
                                     "")
         show_btn.setObjectName("show_btn")
         verticalLayout.addWidget(show_btn)
-        show_btn.clicked.connect(lambda: self.g_show_dialog(info))
+        show_btn.clicked.connect(lambda: self.g_show_dialog(info, info_frame))
         return info_frame
 
 
-    def g_show_dialog(self, info: tuple):
+    def g_show_dialog(self, info: tuple, frame):
         self.dialog.setObjectName("show_dialog")
         self.dialog.resize(400, 300)
         self.dialog.setWindowTitle('More Info')
@@ -297,6 +297,7 @@ class Generator:
         verticalLayout_2.addWidget(label_3)
         close_btn.clicked.connect(self.dialog.close)
         remove_btn.clicked.connect(lambda: db.remove(db, info[0]))
+        remove_btn.clicked.connect(frame.deleteLater)
         remove_btn.clicked.connect(self.dialog.close)
         self.dialog.exec_()
 
