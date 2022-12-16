@@ -1,18 +1,16 @@
 import numpy as np
 import librosa
-import librosa.display
+# import librosa.display
 
 class Tonal_Fragment:
-    def __init__(self, waveform, sr, tstart=None, tend=None):
+    def __init__(self, waveform, sr, tstart, tend):
         self.waveform = waveform
         self.sr = sr
         self.tstart = tstart
         self.tend = tend
 
-        if self.tstart is not None:
-            self.tstart = librosa.time_to_samples(self.tstart, sr=self.sr)
-        if self.tend is not None:
-            self.tend = librosa.time_to_samples(self.tend, sr=self.sr)
+        self.tstart = librosa.time_to_samples(self.tstart, sr=self.sr)
+        self.tend = librosa.time_to_samples(self.tend, sr=self.sr)
         self.y_segment = self.waveform[self.tstart:self.tend]
         self.chromograph = librosa.feature.chroma_cqt(y=self.y_segment, sr=self.sr, bins_per_octave=24)
 
