@@ -3,7 +3,7 @@ import traceback
 import sys
 
 class Library():
-    def __init__(self):
+    def create(self):
         try:
             sqlite_connection = sqlite3.connect('bpkey.db')
             cursor = sqlite_connection.cursor()

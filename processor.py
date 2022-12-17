@@ -2,7 +2,7 @@ import librosa
 import numpy as np
 
 class Processor:
-    def bpm_finder(self) -> int:
+    def bpm_finder(self) -> str:
         tempo, _ = librosa.beat.beat_track(y=self.y, sr=self.sr)
         return str(int(tempo))
 

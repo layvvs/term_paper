@@ -1,26 +1,27 @@
 from PyQt5.QtWidgets import QDialog
 import resources_fin
 from PyQt5 import QtCore, QtGui, QtWidgets
-from library import Library as db
+from library import Library
 
 class Generator:
     """"
     This class generates dialog windows, badges and font
     """
     def __init__(self):
-        self.dialog = QtWidgets.QDialog()
+        self.db = Library()
 
     def g_allert_dialog(self, text='Empty',) -> QtWidgets.QDialog:
-        self.dialog.setObjectName("self.dialog")
-        self.dialog.setWindowTitle('Alert')
-        self.dialog.resize(400, 200)
-        self.dialog.setMinimumSize(QtCore.QSize(400, 200))
-        self.dialog.setMaximumSize(QtCore.QSize(400, 200))
-        self.dialog.setStyleSheet("#alert_frame, #okay_frame{\n"
+        dialog = QtWidgets.QDialog()
+        dialog.setObjectName("dialog")
+        dialog.setWindowTitle('Alert')
+        dialog.resize(400, 200)
+        dialog.setMinimumSize(QtCore.QSize(400, 200))
+        dialog.setMaximumSize(QtCore.QSize(400, 200))
+        dialog.setStyleSheet("#alert_frame, #okay_frame{\n"
                              "    border-radius: 15px;\n"
                              "\n"
                              "}")
-        okay_frame = QtWidgets.QFrame(self.dialog)
+        okay_frame = QtWidgets.QFrame(dialog)
         okay_frame.setGeometry(QtCore.QRect(0, 110, 401, 91))
         okay_frame.setStyleSheet("QPushButton{\n"
                                       "    color: white;\n"
@@ -43,7 +44,7 @@ class Generator:
         okay_btn.setText("Okay")
         okay_btn.setFont(self.g_font(16))
         horizontalLayout_2.addWidget(okay_btn)
-        alert_frame = QtWidgets.QFrame(self.dialog)
+        alert_frame = QtWidgets.QFrame(dialog)
         alert_frame.setGeometry(QtCore.QRect(0, 0, 401, 111))
         alert_frame.setStyleSheet("")
         alert_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -60,8 +61,8 @@ class Generator:
         alert_lbl.setText(text)
         alert_lbl.setFont(self.g_font(12))
         horizontalLayout.addWidget(alert_lbl)
-        okay_btn.clicked.connect(self.dialog.close)
-        self.dialog.exec_()
+        okay_btn.clicked.connect(dialog.close)
+        dialog.exec_()
 
     def g_font(self, size: int) -> QtGui.QFont:
         font = QtGui.QFont()
@@ -70,15 +71,16 @@ class Generator:
         return font
 
     def g_adding_suggestion_dialog(self, track_name: str, track_bpm: str, track_key: str) -> QtWidgets.QDialog:
-        self.dialog.setObjectName("self.dialog")
-        self.dialog.setWindowTitle('Adding')
-        self.dialog.resize(400, 200)
-        self.dialog.setMinimumSize(QtCore.QSize(400, 200))
-        self.dialog.setMaximumSize(QtCore.QSize(400, 200))
-        self.dialog.setStyleSheet("#button_frame, #info_frame{\n"
+        dialog = QtWidgets.QDialog()
+        dialog.setObjectName("dialog")
+        dialog.setWindowTitle('Adding')
+        dialog.resize(400, 200)
+        dialog.setMinimumSize(QtCore.QSize(400, 200))
+        dialog.setMaximumSize(QtCore.QSize(400, 200))
+        dialog.setStyleSheet("#button_frame, #info_frame{\n"
                              "    border-radius: 15px;\n"
                              "}")
-        button_frame = QtWidgets.QFrame(self.dialog)
+        button_frame = QtWidgets.QFrame(dialog)
         button_frame.setGeometry(QtCore.QRect(0, 100, 401, 101))
         button_frame.setStyleSheet("QPushButton{\n"
                                         "    color: white;\n"
@@ -108,7 +110,7 @@ class Generator:
         cancel_btn.setText('Cancel')
         cancel_btn.setFont(self.g_font(16))
         horizontalLayout_2.addWidget(cancel_btn)
-        info_frame = QtWidgets.QFrame(self.dialog)
+        info_frame = QtWidgets.QFrame(dialog)
         info_frame.setGeometry(QtCore.QRect(0, 10, 401, 101))
         info_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         info_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -136,10 +138,10 @@ class Generator:
         name_label.setObjectName("name_label")
         name_label.setText(track_name)
         verticalLayout.addWidget(frame)
-        cancel_btn.clicked.connect(self.dialog.close)
-        add_btn.clicked.connect(lambda: db.add(db, track_name, track_bpm, track_key))
-        add_btn.clicked.connect(self.dialog.close)
-        self.dialog.exec_()
+        cancel_btn.clicked.connect(dialog.close)
+        add_btn.clicked.connect(lambda: self.db.add(track_name, track_bpm, track_key))
+        add_btn.clicked.connect(dialog.close)
+        dialog.exec_()
 
     def g_badge(self, info: tuple) -> QtWidgets:
         info_frame = QtWidgets.QFrame()
@@ -196,16 +198,17 @@ class Generator:
 
 
     def g_show_dialog(self, info: tuple, frame):
-        self.dialog.setObjectName("show_dialog")
-        self.dialog.resize(400, 300)
-        self.dialog.setWindowTitle('More Info')
-        self.dialog.setMinimumSize(QtCore.QSize(400, 300))
-        self.dialog.setMaximumSize(QtCore.QSize(400, 300))
-        self.dialog.setStyleSheet("#image_frame, #label_frame{\n"
+        dialog = QtWidgets.QDialog()
+        dialog.setObjectName("show_dialog")
+        dialog.resize(400, 300)
+        dialog.setWindowTitle('More Info')
+        dialog.setMinimumSize(QtCore.QSize(400, 300))
+        dialog.setMaximumSize(QtCore.QSize(400, 300))
+        dialog.setStyleSheet("#image_frame, #label_frame{\n"
                              "    border-color: gb(27, 33, 37);\n"
                              "    border-radius: 15px;\n"
                              "}")
-        btn_frame = QtWidgets.QFrame(self.dialog)
+        btn_frame = QtWidgets.QFrame(dialog)
         btn_frame.setGeometry(QtCore.QRect(0, 220, 401, 81))
         btn_frame.setStyleSheet("QPushButton{\n"
                                      "    color: white;\n"
@@ -236,7 +239,7 @@ class Generator:
         remove_btn.setFont(self.g_font(16))
         remove_btn.setText('Remove')
         horizontalLayout.addWidget(remove_btn)
-        info_frame = QtWidgets.QFrame(self.dialog)
+        info_frame = QtWidgets.QFrame(dialog)
         info_frame.setGeometry(QtCore.QRect(0, 0, 401, 221))
         info_frame.setStyleSheet("#info_frame{\n"
                                       "    border: 2px solid  black;\n"
@@ -295,9 +298,9 @@ class Generator:
         label_3.setFont(self.g_font(16))
         label_3.setText(info[3])
         verticalLayout_2.addWidget(label_3)
-        close_btn.clicked.connect(self.dialog.close)
-        remove_btn.clicked.connect(lambda: db.remove(db, info[0]))
+        close_btn.clicked.connect(dialog.close)
+        remove_btn.clicked.connect(lambda: self.db.remove(info[0]))
         remove_btn.clicked.connect(frame.deleteLater)
-        remove_btn.clicked.connect(self.dialog.close)
-        self.dialog.exec_()
+        remove_btn.clicked.connect(dialog.close)
+        dialog.exec_()
 

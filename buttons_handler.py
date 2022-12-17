@@ -33,6 +33,10 @@ class ButtonsHandler:
                 "}\n")
             self.btn.setEnabled(False)
 
+    def get_name(self):
+        index = len(self.path) - self.path[::-1].index('/')
+        return self.path[index:-4]
+
     def open_file(self):
         self.path = (QFileDialog\
                      .getOpenFileName(QDialog(), 'Open Audio File', '/home',
@@ -41,12 +45,10 @@ class ButtonsHandler:
             if not self.p.audio_valid(self.path):
                 self.g.g_allert_dialog('Audio file duration must be 30 seconds or more')
             else:
-                index = len(self.path) - self.path[::-1].index('/')
-                self.name = self.path[index:-4]
                 self.bpm_label.setText("Unknown")
                 self.key_label.setText("Unknown")
                 self.key_label.setFont(self.g.g_font(16))
-                self.name_label.setText(self.name)
+                self.name_label.setText(self.get_name())
                 self.btn_switch(True)
 
     def analyze(self):
@@ -60,7 +62,7 @@ class ButtonsHandler:
             self.key_label.setText(key)
         else:
             self.key_label.setText(key)
-        self.g.g_adding_suggestion_dialog(self.name, tempo, key)
+        self.g.g_adding_suggestion_dialog(self.get_name(), tempo, key)
         self.btn_switch(False)
 
 
