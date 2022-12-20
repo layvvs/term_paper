@@ -3,6 +3,7 @@ import resources_fin
 from PyQt5 import QtCore, QtGui, QtWidgets
 from library import Library
 
+
 class Generator:
     """"
     This class generates dialog windows, badges and font
@@ -291,12 +292,12 @@ class Generator:
         label_2 = QtWidgets.QLabel(label_frame)
         label_2.setObjectName("label_2")
         label_2.setFont(self.g_font(16))
-        label_2.setText(info[2])
+        label_2.setText(info[3])
         verticalLayout_2.addWidget(label_2)
         label_3 = QtWidgets.QLabel(label_frame)
         label_3.setObjectName("label_3")
         label_3.setFont(self.g_font(16))
-        label_3.setText(info[3])
+        label_3.setText(info[2])
         verticalLayout_2.addWidget(label_3)
         close_btn.clicked.connect(dialog.close)
         remove_btn.clicked.connect(lambda: self.db.remove(info[0]))

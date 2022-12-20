@@ -1,6 +1,8 @@
 import generator
 import library
 from PyQt5.QtWidgets import (QWidget, QScrollArea, QVBoxLayout)
+
+
 class Insert:
     def insert(self, area: QScrollArea):
         self.db = library.Library()

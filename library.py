@@ -2,6 +2,7 @@ import sqlite3
 import traceback
 import sys
 
+
 class Library():
     def create(self):
         try:

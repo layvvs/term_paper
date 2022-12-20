@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from generator import Generator
 from processor import Processor
 
+
 class ButtonsHandler:
     """
     This class works with buttons
